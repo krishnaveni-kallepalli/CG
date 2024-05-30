@@ -57,6 +57,6 @@ int main()
 	show(vect);
 
 
-
+	return 0;
 
 }
