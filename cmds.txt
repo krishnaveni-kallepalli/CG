@@ -1,0 +1,140 @@
+git switch <branch name>
+git switch -c <branch name> 
+	create and switch
+git commit -m "message"
+git commit -a -m "add & commit"
+
+git branch -a
+git branch -m <new branch name>
+        rename a branch
+git branch -d <branch name>
+git branch -D <branch name>
+        --delete --force
+                                                                ~   
+git diff
+git diff --staged [filename]
+git diff --staged
+git diff --cached
+git diff HEAD [filename] 
+git diff b1 b2
+git diff commit1 commit2
+
+
+stashing senario:
+when we switch the branch without commit, it won't let you switch between branches 
+it'll throw below error 
+error: Your local changes to the following files would be overwritten by checkout:
+        hello.html
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+if it switches...
+the changes are not staged, you can switch and commit the changes it previous branch where changes are done
+
+
+
+git stash - saves our changes in stash but not applied 
+it'll be back to previous commit changes but saves the changes done  
+save changes without commit 
+
+gto saveit stash pop
+remove most recently stashed changes and apply to working copy(added changes back in from where it was stashed).
+
+git stash applyhow are you
+
+cmd		file		stash		branch	commit
+
+actual		hello 				x	yes
+
+switch						y		
+
+modifiled	hello				y	no		
+		how are you	
+		
+stash		hello		 hello		y
+				 how are you
+
+switch						x
+(do your work in x branch)
+
+switch						y
+
+stash pop	hello				y	need to commit
+		how are you				to save(no)
+
+stash		hello		hello		y
+				how are you
+							
+apply		hello		hello		y
+		how are you	how are you
+
+switch		hello		hello		x
+				how are you
+			
+stash apply	hello		hello		x	yes	
+		how are you	how are you
+
+switch				hello		y
+				how are you
+
+apply		hello				y	
+		how are you	
+
+
+stack of stashes - multiple stashes
+
+
+cmd		file		stash		branch		commit		
+		content		stack			
+		
+actual		red				x		no
+
+change		red				x		no
+		yellow
+
+stash		red		|yellow|	x		no
+
+
+change		red		|yellow|	x		no
+		purple
+
+stash		red		|purple|	x		no
+				|yellow|
+
+change		red		|purple|        x               no
+		greens		|yellow|				
+
+stash		red		|greens|
+				|purple|        x               no
+                                |yellow|
+
+stash list
+|greens|
+|purple|
+|yellow|
+
+
+git stash apply <stashid>
+git stash apply stash@{0}
+
+apply0		red		|greens|
+                greens          |purple|        x               no
+                                |yellow|
+
+
+
+apply2		red             |greens|
+                greens          |purple|        x               no
+                                |yellow|
+<<<<<<<<<<<<<<<<<<<< conflit - not commited >>>>>>>>>>>>>>>>>>>>>>>
+
+remove greens and re-apply
+
+apply2		red	        |greens|
+                yellow          |purple|        x               no
+                                |yellow|
+
+stash drop - remove entries in stash
+
+git stash drop <stash id>
+git stash clear - clears everything in stash
